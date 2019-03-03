@@ -1,8 +1,10 @@
 package com.example.user.alsapp;
 
 import android.content.Context;
+import android.os.Environment;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import static android.content.Context.MODE_PRIVATE;
@@ -15,7 +17,7 @@ public class fileSave {
     public fileSave(Context con,String name, String text) {
         this.context=con;
         this.text=text;
-        this.name=name;
+        this.name=name+".txt";
         saveData();
     }
 
@@ -23,9 +25,13 @@ public class fileSave {
 
         try {
             //utworzenie pliku do zapisu
-            FileOutputStream fOut = context.openFileOutput(name,
-                    MODE_PRIVATE);
-            //utworzenie OutputStreamWritera
+            File path = Environment.getExternalStoragePublicDirectory(
+                    Environment.DIRECTORY_DOCUMENTS);
+            File myFile = new File(path, name);
+            FileOutputStream fOut = new FileOutputStream(myFile,true);
+//            FileOutputStream fOut = context.openFileOutput(name,
+//                    Context.MODE_PRIVATE);
+//            //utworzenie OutputStreamWritera
             OutputStreamWriter out = new OutputStreamWriter(fOut);
             //zapisanie do pliku
             out.write(text);

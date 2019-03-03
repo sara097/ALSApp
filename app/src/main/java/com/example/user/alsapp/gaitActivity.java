@@ -52,64 +52,17 @@ public class gaitActivity extends AppCompatActivity implements SensorEventListen
     private StringBuilder data = new StringBuilder(); //string builder przechowujacy dane, ktore mozna nastepnie zapisac do pliku
     private int counter = 0; //licznik (do osi OX wykresu)
 
-    private boolean wasRunning; //zmienna, ktora nie pozwala by aplikacja działała w tle
-
     //elementy potrzebne do wykresu
     private XYMultipleSeriesRenderer mrenderer;
     private LinearLayout chartLayout;
-    private boolean wasPlot = false;
     private Button startBtn;
 
-    private ArrayList<Double> values = new ArrayList<>(); //lista tablicowa przechowująca obecnie zebrane wartosci
-    // (wykorzystywana przy liczniku kroków)
 
-    private ArrayList<Double> times = new ArrayList<>(); //zmienna na kroki czasowe.
-
-    @Override
-    protected void onSaveInstanceState(Bundle savedInstanceState) {
-        //zapisanie zmiennych
-        super.onSaveInstanceState(savedInstanceState);
-        savedInstanceState.putSerializable("xseries", seriesX);
-        savedInstanceState.putSerializable("yseries", seriesY);
-        savedInstanceState.putSerializable("zseries", seriesZ);
-        savedInstanceState.putBoolean("isRunning", isRunning);
-        savedInstanceState.putInt("counter", counter);
-
-        double[] valuesTable = arrayToTable(values);
-        double[] timesTable = arrayToTable(times);
-
-        savedInstanceState.putDoubleArray("values", valuesTable);
-        savedInstanceState.putDoubleArray("times", timesTable);
-        savedInstanceState.putBoolean("wasRunning", wasRunning);
-        savedInstanceState.putBoolean("wakelock", myWakeLock.isHeld());
-
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gait);
-
-        //zapisanie zmiennych sprzed zmiany orientacji
-        //savedInstanceState.putBoolean("wasPlot", wasPlot);
-
-        boolean wakelockState = false;
-        //pobieranie stanów instancji, czyli wznawianie stanu aplikacji sprzed zmiany orientacji.
-        if (savedInstanceState != null) {
-            wasPlot = savedInstanceState.getBoolean("wasPlot");
-            seriesX = (XYSeries) savedInstanceState.getSerializable("xseries");
-            seriesY = (XYSeries) savedInstanceState.getSerializable("yseries");
-            seriesZ = (XYSeries) savedInstanceState.getSerializable("zseries");
-            isRunning = savedInstanceState.getBoolean("isRunning");
-            counter = savedInstanceState.getInt("counter");
-            double[] valuesTable = savedInstanceState.getDoubleArray("values");
-            values = tableToArray(valuesTable);
-            double[] timesTable = savedInstanceState.getDoubleArray("times");
-            times = tableToArray(timesTable);
-            wasRunning = savedInstanceState.getBoolean("wasRunning");
-            wakelockState = savedInstanceState.getBoolean("wakelock"); //sprawdzenie stanu wakelocka
-
-        }
 
 
         //ustawienie czujnika - akcelerometru
@@ -123,9 +76,6 @@ public class gaitActivity extends AppCompatActivity implements SensorEventListen
         myWakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "myapp:test");
 
         startBtn=(Button) findViewById(R.id.startBtn);
-
-        if (wakelockState)
-            myWakeLock.acquire(); //ustawienie stanu wake locka na stan sprzed zmiany orientacji
 
         //utworzenie rendererów serii danych i doprecyzowanie wyglądu serii danych na wykresie
         XYSeriesRenderer rendererX = new XYSeriesRenderer();
@@ -161,7 +111,6 @@ public class gaitActivity extends AppCompatActivity implements SensorEventListen
         //zainicjowanie elementów GUI
         chartLayout = (LinearLayout) findViewById(R.id.plotLayout);
 
-        if (wasPlot) drawCurrent();
     }
 
 
@@ -241,8 +190,6 @@ public class gaitActivity extends AppCompatActivity implements SensorEventListen
     }
 
     public void drawCurrent() {
-        //ustawienie ze wykres był narysowany a drugi dostepny typ wykresu nie
-        wasPlot = true;
         //metoda po kliknieciu ktorej rysowany jest wykres z przed chwila zebranych danych
 
 
@@ -263,21 +210,4 @@ public class gaitActivity extends AppCompatActivity implements SensorEventListen
 
     }
 
-    //metoda pozwalająca na zamianę wartosci z tablicy na lsitę tablicową
-    private ArrayList<Double> tableToArray(double[] table) {
-        ArrayList<Double> array = new ArrayList<>();
-        for (int i = 0; i < table.length; i++) {
-            array.add(table[i]);
-        }
-        return array;
-    }
-
-    //metoda przepisująca wartosci z listy tablicowej do tablicy
-    private double[] arrayToTable(ArrayList<Double> array) {
-        double[] table = new double[array.size()];
-        for (int i = 0; i < array.size(); i++) {
-            table[i] = array.get(i);
-        }
-        return table;
-    }
 }
