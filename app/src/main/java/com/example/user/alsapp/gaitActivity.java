@@ -258,7 +258,7 @@ public class gaitActivity extends AppCompatActivity implements SensorEventListen
         chartLayout.addView(chartView);
         DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd;HH:mm:ss");
         Date date = new Date();
-        String fileName="gait"+dateFormat.format(date);
+        String fileName="gait;"+dateFormat.format(date);
         fileSave fileSave=new fileSave(this,fileName, data.toString());
 
     }
