@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">ALSApp</string>
+    <string name="title_activity_first_use">FirstUse</string>
+    <string name="nameTxt">Imie</string>
+    <string name="sexTxt">Podaj płeć:</string>
+    <string name="ageTxt">Wiek:</string>
+    <string name="ageHint">wiek</string>
+    <string name="invalidTxt">Niepoprawna data</string>
+    <string name="birthdateTxt">Wybierz datę urodzin:</string>
+    <string name="okInfo">Zatwierdz</string>
+    <string name="gaitInfo">Test chodu</string>
+    <string name="tapInfo">Test Klikania</string>
+    <string name="handInfo">Test trzymania</string>
+    <string name="other">Zanotuj objawy</string>
+    <string name="browseInfo">Przeglądaj pliki</string>
+    <string-array name="sexChoose">
+        <item>kobieta</item>
+        <item>mężczyzna</item>
+    </string-array>
+</resources>
