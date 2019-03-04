@@ -10,9 +10,11 @@
     <string name="okInfo">Zatwierdz</string>
     <string name="gaitInfo">Test chodu</string>
     <string name="tapInfo">Test Klikania</string>
-    <string name="handInfo">Test trzymania</string>
+    <string name="handInfo">Test ruchu ręką</string>
     <string name="other">Zanotuj objawy</string>
     <string name="browseInfo">Przeglądaj pliki</string>
+    <string name="taptwoTest">Test podwójnego klikania</string>
+    <string name="startBtn">Start</string>
     <string-array name="sexChoose">
         <item>kobieta</item>
         <item>mężczyzna</item>

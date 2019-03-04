@@ -13,9 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:screenOrientation="portrait">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,20 +24,25 @@
         </activity>
         <activity
             android:name=".FirstUse"
-            android:screenOrientation="portrait"
             android:label="@string/title_activity_first_use"
-            android:theme="@style/AppTheme.NoActionBar"
-            />
-        <activity android:name=".gaitActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".handActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".tapActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".otherActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".browseActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".gaitActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".handActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".tapActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".otherActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".browseActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".TwoTapActivity"></activity>
     </application>
 
 </manifest>

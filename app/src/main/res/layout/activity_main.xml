@@ -10,10 +10,15 @@
         android:id="@+id/headerTxt"
         android:layout_width="123dp"
         android:layout_height="25dp"
+        android:layout_marginStart="131dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="130dp"
         android:textColor="@android:color/background_dark"
         android:textSize="18sp"
-        tools:layout_editor_absoluteX="131dp"
-        tools:layout_editor_absoluteY="8dp" />
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView2"
@@ -72,17 +77,31 @@
         app:layout_constraintTop_toBottomOf="@+id/handsBtn" />
 
     <Button
-        android:id="@+id/objawyBtn"
+        android:id="@+id/tapBtn2"
         android:layout_width="125dp"
         android:layout_height="69dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:onClick="tapTwoClicked"
+        android:text="@string/taptwoTest"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tapBtn" />
+
+    <Button
+        android:id="@+id/objawyBtn"
+        android:layout_width="125dp"
+        android:layout_height="69dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:onClick="otherClicked"
         android:text="@string/other"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tapBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/tapBtn2" />
 
     <Button
         android:id="@+id/przegladajBtn"

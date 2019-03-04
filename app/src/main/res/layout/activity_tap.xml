@@ -23,15 +23,15 @@
 
     <TextView
         android:id="@+id/tapInfo"
-        android:layout_width="135dp"
-        android:layout_height="96dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="115dp"
         android:layout_marginTop="108dp"
         android:layout_marginEnd="134dp"
         android:layout_marginBottom="239dp"
         android:text="TextView"
         android:textColor="@android:color/background_dark"
-        android:textSize="30sp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
