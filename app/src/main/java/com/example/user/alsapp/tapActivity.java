@@ -16,7 +16,7 @@ public class tapActivity extends AppCompatActivity {
 
     private Date date;
     private ArrayList<Long> mils=new ArrayList<>();
-    TextView info;
+    private TextView info;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,7 @@ public class tapActivity extends AppCompatActivity {
             calculateTap();
         }
     }
+
 
     private void calculateTap(){
         long avgTap=0;

@@ -74,8 +74,9 @@ public class fileRead {
             info.setText(getFileName()+"\n"+"Objawy, które wystąpiły tego dnia to: "+stringBuilder.toString());
         }else if (uri.toString().contains("tap")){
             info.setText(getFileName()+"\n"+"Średnio między kolejnymi kliknięciami upłynęło "+stringBuilder.toString()+"milisekund");
-        }else if(uri.toString().contains("taptwo")){
+        }else if(uri.toString().contains("twoTap")){
             info.setText(getFileName());
+            drawTap(chartLayout);
             System.out.println("aaa5");
         }
     }
@@ -170,5 +171,63 @@ public class fileRead {
         GraphicalView chartView = ChartFactory.getLineChartView(context, mdataset, mrenderer);
         chartLayout.addView(chartView);
 
+    }
+
+    private void drawTap(LinearLayout chartLayout){
+        readSeriesX = new XYSeries("data right");
+        readSeriesY = new XYSeries("data left");
+
+
+        //utworzenie rendererów serii danych i doprecyzowanie wyglądu serii danych na wykresie
+        XYSeriesRenderer rendererX = new XYSeriesRenderer();
+        rendererX.setLineWidth(2);
+        rendererX.setColor(Color.MAGENTA);
+        rendererX.setPointStyle(PointStyle.DIAMOND);
+        rendererX.setPointStrokeWidth(6);
+        rendererX.setLineWidth(3);
+
+
+        XYSeriesRenderer rendererZ = new XYSeriesRenderer();
+        rendererZ.setLineWidth(2);
+        rendererZ.setColor(Color.BLUE);
+        rendererZ.setPointStyle(PointStyle.DIAMOND);
+        rendererZ.setPointStrokeWidth(6);
+        rendererZ.setLineWidth(3);
+
+        //dodanie otworzonych wczesniej rendererów do listy rendererów i ustawienie maksimów i minimów wykresu
+        mrenderer = new XYMultipleSeriesRenderer();
+        mrenderer.addSeriesRenderer(rendererX);
+        mrenderer.addSeriesRenderer(rendererZ);
+        mrenderer.setYAxisMax(15);
+        mrenderer.setYAxisMin(-10);
+        mrenderer.setShowGrid(true);
+
+        String[] lines = stringBuilder.toString().split("!");
+        String[] line = null;
+        double time;
+        double right;
+        double left;
+
+        for (String line1 : lines) {
+            //wszystkie pomiary mialy po kilka wartosci rozdzielonych sredniakmi, wiec je tez rodzielamy
+            line = line1.split(";");
+            time = Double.valueOf(line[0]);
+            right = Double.valueOf(line[1]);
+            left = Double.valueOf(line[2]);
+
+            //dodajemy do serii danych wartosci
+            readSeriesX.add(time, right);
+            readSeriesY.add(time, left);
+
+        }
+
+        //dodanie danych do wykresu
+        XYMultipleSeriesDataset mdataset = new XYMultipleSeriesDataset();
+        mdataset.addSeries(readSeriesX);
+        mdataset.addSeries(readSeriesY);
+
+        //wyswietlenie wykresu
+        GraphicalView chartView = ChartFactory.getLineChartView(context, mdataset, mrenderer);
+        chartLayout.addView(chartView);
     }
 }
