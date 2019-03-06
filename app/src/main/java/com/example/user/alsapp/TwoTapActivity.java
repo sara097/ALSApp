@@ -110,10 +110,11 @@ public class TwoTapActivity extends AppCompatActivity {
                 }
             } else if (counter==20){
                 endOfMeasure();
+                counter++;
+            }else{
+
             }
-            else{
-                //tu nie robie se nic
-            }
+
 
 
                 return true;
@@ -123,11 +124,13 @@ public class TwoTapActivity extends AppCompatActivity {
     };
 
     private void endOfMeasure(){
-        info.setText("Badanie zakończone!");
-        DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd;HH:mm:ss");
-        Date date = new Date();
-        String fileName="twoTap;"+dateFormat.format(date);
-        fileSave fileSave=new fileSave(this,fileName, data.toString());
+
+            info.setText("Badanie zakończone!");
+            DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd;HH:mm:ss");
+            Date date = new Date();
+            String fileName = "twoTap;" + dateFormat.format(date);
+            fileSave fileSave = new fileSave(this, fileName, data.toString());
+
     }
 
 
