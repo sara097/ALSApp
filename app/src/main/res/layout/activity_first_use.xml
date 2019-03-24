@@ -11,7 +11,9 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/nameTxt" />
+        android:text="@string/nameTxt"
+        android:textColor="@android:color/background_dark"
+        android:textSize="24sp" />
 
     <EditText
         android:id="@+id/nameTxt"
@@ -19,13 +21,16 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/nameTxt"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/plecTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/sexTxt" />
+        android:text="@string/sexTxt"
+        android:textColor="@android:color/background_dark"
+        android:textSize="24sp" />
 
     <Spinner
         android:id="@+id/genderSpinner"
@@ -37,7 +42,9 @@
         android:id="@+id/ageTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/ageTxt" />
+        android:text="@string/ageTxt"
+        android:textColor="@android:color/black"
+        android:textSize="24sp" />
 
     <EditText
         android:id="@+id/ETAge"
@@ -48,14 +55,16 @@
         android:hint="@string/ageHint"
         android:inputType="text"
         android:selectAllOnFocus="false"
-        android:singleLine="true" />
+        android:singleLine="true"
+        android:textSize="24sp" />
 
     <Button
         android:id="@+id/okBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="168dp"
+        android:layout_height="86dp"
         android:onClick="okClicked"
-        android:text="@string/okInfo" />
+        android:text="@string/okInfo"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/infoTxt"

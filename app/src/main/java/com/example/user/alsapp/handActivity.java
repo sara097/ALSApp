@@ -6,6 +6,8 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.MediaPlayer;
+import android.os.Handler;
 import android.os.PowerManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -49,6 +51,7 @@ public class handActivity extends AppCompatActivity implements SensorEventListen
     private XYMultipleSeriesRenderer mrenderer;
     private LinearLayout chartLayout;
     private Button startBtn;
+    private MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +103,8 @@ public class handActivity extends AppCompatActivity implements SensorEventListen
 
         //zainicjowanie elementów GUI
         chartLayout = (LinearLayout) findViewById(R.id.plotLayout);
+
+        mp = MediaPlayer.create(this, R.raw.beep);
     }
 
     @Override
@@ -134,6 +139,8 @@ public class handActivity extends AppCompatActivity implements SensorEventListen
                 String toData = counter + ";" + aX + ";" + aY + ";" + aZ + "!";
                 data.append(toData);
 
+
+
                 if (counter > 300) {
                     startBtn.performClick();
                     drawCurrent();
@@ -166,7 +173,7 @@ public class handActivity extends AppCompatActivity implements SensorEventListen
 
 
         isRunning = !isRunning; //zmienna ktora docyduje o tym, czy dokonujemy pomiaru czy tez nie
-
+        startBtn.setVisibility(View.GONE);
         if (isRunning) {
             myWakeLock.acquire(); //jesli pomiar ma byc wykonany musimy tez pozwolic aplikacji na pomiary przy zablokowanym telefonie
             clearData();
@@ -178,7 +185,7 @@ public class handActivity extends AppCompatActivity implements SensorEventListen
 
     public void drawCurrent() {
         //metoda po kliknieciu ktorej rysowany jest wykres z przed chwila zebranych danych
-
+        mp.start();
 
         chartLayout.removeAllViews(); //usuwanie tego co bylo na wykresie
         //dodanie serii danych do wykresu

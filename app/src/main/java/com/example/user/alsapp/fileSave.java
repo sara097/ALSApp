@@ -29,9 +29,6 @@ public class fileSave {
                     Environment.DIRECTORY_DOCUMENTS);
             File myFile = new File(path, name);
             FileOutputStream fOut = new FileOutputStream(myFile,true);
-//            FileOutputStream fOut = context.openFileOutput(name,
-//                    Context.MODE_PRIVATE);
-//            //utworzenie OutputStreamWritera
             OutputStreamWriter out = new OutputStreamWriter(fOut);
             //zapisanie do pliku
             out.write(text);

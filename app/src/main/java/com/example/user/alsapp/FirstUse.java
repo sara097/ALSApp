@@ -1,6 +1,7 @@
 package com.example.user.alsapp;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,8 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+
+import java.io.FileOutputStream;
 import java.util.Calendar;
 
 public class FirstUse extends AppCompatActivity {
@@ -71,7 +74,16 @@ public class FirstUse extends AppCompatActivity {
 
     public void okClicked(View view) {
         user=name.getText().toString()+";"+ String.valueOf(genderSpinner.getSelectedItem())+";"+age.getText().toString();
-        fileSave fileSave=new fileSave(this,"dane",user);
+      //  fileSave fileSave=new fileSave(this,"dane",user);
+        FileOutputStream outputStream;
+
+        try {
+            outputStream = openFileOutput("dane", Context.MODE_PRIVATE);
+            outputStream.write(user.getBytes());
+            outputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putBoolean("firstStart", false);

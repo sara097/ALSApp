@@ -8,6 +8,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.MediaPlayer;
 import android.os.PowerManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -56,6 +57,7 @@ public class gaitActivity extends AppCompatActivity implements SensorEventListen
     private XYMultipleSeriesRenderer mrenderer;
     private LinearLayout chartLayout;
     private Button startBtn;
+    private MediaPlayer mp;
 
 
 
@@ -110,6 +112,7 @@ public class gaitActivity extends AppCompatActivity implements SensorEventListen
 
         //zainicjowanie elementów GUI
         chartLayout = (LinearLayout) findViewById(R.id.plotLayout);
+        mp = MediaPlayer.create(this, R.raw.beep);
 
     }
 
@@ -179,7 +182,7 @@ public class gaitActivity extends AppCompatActivity implements SensorEventListen
 
 
         isRunning = !isRunning; //zmienna ktora docyduje o tym, czy dokonujemy pomiaru czy tez nie
-
+        startBtn.setVisibility(View.GONE);
         if (isRunning) {
             myWakeLock.acquire(); //jesli pomiar ma byc wykonany musimy tez pozwolic aplikacji na pomiary przy zablokowanym telefonie
             clearData();
@@ -190,7 +193,9 @@ public class gaitActivity extends AppCompatActivity implements SensorEventListen
     }
 
     public void drawCurrent() {
-        //metoda po kliknieciu ktorej rysowany jest wykres z przed chwila zebranych danych
+
+        mp.start();
+
 
 
         chartLayout.removeAllViews(); //usuwanie tego co bylo na wykresie

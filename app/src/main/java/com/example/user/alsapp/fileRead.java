@@ -39,7 +39,7 @@ public class fileRead {
     }
 
     public void readData() {
-        System.out.println("hehe " +uri);
+
 
         try {
             InputStream inputStream = context.getContentResolver().openInputStream(uri);
