@@ -49,8 +49,9 @@ public class fileRead {
             String line;
             while ((line = reader.readLine()) != null) {
                 stringBuilder.append(line);
+
             }
-            System.out.println("hehe "+stringBuilder.toString());
+
             reader.close();
             inputStream.close();
 
@@ -73,12 +74,13 @@ public class fileRead {
         }else if (uri.toString().contains("other")){
             info.setText(getFileName()+"\n"+"Objawy, które wystąpiły tego dnia to: "+stringBuilder.toString());
         }else if (uri.toString().contains("tap")){
-            info.setText(getFileName()+"\n"+"Średnio między kolejnymi kliknięciami upłynęło "+stringBuilder.toString()+"milisekund");
+            info.setText(getFileName()+"\n"+stringBuilder.toString());
         }else if(uri.toString().contains("twoTap")){
             info.setText(getFileName());
             drawTap(chartLayout);
             System.out.println("aaa5");
         }
+
     }
 
    private String getFileName() {

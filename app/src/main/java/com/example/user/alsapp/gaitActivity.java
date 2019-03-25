@@ -150,7 +150,7 @@ public class gaitActivity extends AppCompatActivity implements SensorEventListen
                 String toData = counter + ";" + aX + ";" + aY + ";" + aZ + "!";
                 data.append(toData);
 
-                if (counter > 300) {
+                if (counter > 200) {
                     startBtn.performClick();
                     drawCurrent();
 

@@ -29,12 +29,15 @@ public class tapActivity extends AppCompatActivity {
 
 
     public void screenTapped(View view) {
-        if(mils.size()<10) {
+        if(mils.size()==10){
+            calculateTap();
             date = new Date();
             mils.add(date.getTime());
-        }else if(mils.size()==10){
-            calculateTap();
+        }else {
+            date = new Date();
+            mils.add(date.getTime());
         }
+
     }
 
 
@@ -49,6 +52,8 @@ public class tapActivity extends AppCompatActivity {
         DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd;HH:mm:ss");
         Date date = new Date();
         String fileName="tap;"+dateFormat.format(date);
-        fileSave fileSave=new fileSave(this,fileName, String.valueOf(avgTap));
+
+        fileSave fileSave=new fileSave(this,fileName, info.getText().toString());
+
     }
 }
